@@ -3,7 +3,7 @@ A web chat written in JavaScript (Node.js), ExpressJS and Socket.IO.
 
 ## setup
 * clone this repository
-* enter inside the repository in the command line
+* enter inside the repository on the command line
 * type the commands:
 * `npm install`
 * `node index.js`
