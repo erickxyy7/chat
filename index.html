@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Chat</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/index.css">
+    </head>
+    <body>
+        <form id="menu">
+            <label for="username">Nome de usuário:</label>
+            <input type="text" name="username" id="username">
+            <label for="roomCode">Código da sala:</label>
+            <input type="text" name="roomCode" id="roomCode">
+            <input type="submit" value="Entrar">
+        </form>
+        <div id="menuChooseBuildedRoom">
+            <h2>Ou, escolha uma sala e entre com um nome aleatório:</h2>
+            <ul>
+                <li><button id="roomOne">sala 1</button></li>
+            </ul>
+        </div>
+        
+        <div id="messagesBox">
+            <div id="userTyping"><span style="color: white">...</span></div>
+            <div id="messages">
+            </div>
+            <form id="messagesForm">
+                <input type="text" name="message" id="message" placeholder="Sua mensagem aqui..." autocomplete="off" required>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        
+        <script src="/static/js/socket.io.min.js"></script>
+        <script src="/static/js/index.js"></script>
+    </body>
+</html>
