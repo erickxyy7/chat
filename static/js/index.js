@@ -1,74 +1,37 @@
-socket = io();
+const express = require('express')
+const http = require('http')
+const { Server } = require('socket.io')
 
-names = ['Lee', 'Kye', 'Penelope', 'Demi', 'Flora', 'Alexia', 'Amelia', 'Claudia', 'Lachlan', 'Esme', 'Annabel', 'Charley', 'Evangeline', 'Milly', 'Paige', 'Sam', 'Yasmin', 'Minnie', 'Annabelle', 'Abigail', 'Genevieve', 'Ray', 'Lisa', 'Verity', 'Faye', 'Stacey', 'Jenna', 'Courtney', 'Angela', 'Ronnie', 'Rosa', 'Gloria', 'Meghan', 'Poppy', 'Kane', 'Sana', 'Darcie', 'Susan', 'Cleo', 'Mabel', 'Jane', 'Stephanie', 'Cora', 'Scarlett', 'Ayla', 'Jessica', 'Hanna', 'Elsie', 'Jay', 'Maia'];
-function randomName() {
-    return names[Math.floor(Math.random() * names.length)];
-}
+const app = express()
+const server = http.createServer(app)
+const io = new Server(server)
 
-messagesForm.onsubmit = () => {
-    if (document.getElementById('typing') != null)
-        document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
-    message = messagesForm.message.value;
-    messagesForm.message.value = '';
-    messages.innerHTML += 'você: ' + message + '<br>';
-    messages.scrollTo(0, messages.scrollHeight);
-    socket.emit(roomCode, message);
-    return false;
-}
+app.use(express.static(__dirname))
 
-function changeRoom(roomCode) {
-    socket.emit('change room', roomCode);
-    
-    /* Listening for messages of other users from the same room: */
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html')
+})
+
+
+io.on('connection', (socket) => {
+  socket.on('change username', (username) => {
+    socket.username = username
+  })
+  
+  socket.on('change room', (roomCode) => {
     socket.on(roomCode, (message) => {
-        if (document.getElementById('typing') != null)
-            document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
-        messages.innerHTML += message + '<br>';
-        messages.scrollTo(0, messages.scrollHeight);
-    });
-}
+      message = socket.username + ': ' + message
+      socket.broadcast.emit(roomCode, message)
+    })
+    
+    socket.on(`${roomCode}:typing`, () => {
+      socket.broadcast.emit(`${roomCode}:typing`, socket.username + ' está digitando...')
+    })
+  })
+})
 
-menu.onsubmit = () => {
-    username = menu.username.value;
-    roomCode = menu.roomCode.value;
-    
-    socket.emit('change username', username);
-    
-    changeRoom(roomCode);
-    
-    menu.style.display = 'none';
-    menuChooseBuildedRoom.style.display = 'none';
-    messagesBox.style.display = 'block';
-    
-    return false;
-}
 
-roomOne.onclick = () => {
-    username = randomName();
-    roomCode = 'roomOne';
-    
-    socket.emit('change username', username);
-    
-    socket.on(roomCode + ':typing', (text) => {
-        typing = document.getElementById('typing');
-        if (typing == null) {
-            userTyping.innerHTML = '<span class="text-secondary" id="typing">' + text + '</span>';
-            
-            /* Deletes the "typing..." message after the time set in setTimeout. */
-            setTimeout(() => {
-                document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
-            }, 3000);
-        }
-    });
-    
-    changeRoom(roomCode);
-    
-    menu.style.display = 'none';
-    menuChooseBuildedRoom.style.display = 'none';
-    messagesBox.style.display = 'block';
-}
-
-/* "typing..." functionality. */
-message.onkeypress = () => {
-    socket.emit(roomCode + ':typing');
-}
+const PORT = process.env.PORT || 8000
+server.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${8000}`)
+})

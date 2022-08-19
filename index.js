@@ -9,29 +9,29 @@ const io = new Server(server)
 app.use(express.static(__dirname))
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+  res.sendFile(__dirname + '/index.html')
 })
 
 
 io.on('connection', (socket) => {
-    socket.on('change username', (username) => {
-        socket.username = username
+  socket.on('change username', (username) => {
+    socket.username = username
+  })
+  
+  socket.on('change room', (roomCode) => {
+    socket.on(roomCode, (message) => {
+      message = socket.username + ': ' + message
+      socket.broadcast.emit(roomCode, message)
     })
     
-    socket.on('change room', (roomCode) => {
-        socket.on(roomCode, (message) => {
-            message = socket.username + ': ' + message
-            socket.broadcast.emit(roomCode, message)
-        })
-        
-        socket.on(`${roomCode}:typing`, () => {
-            socket.broadcast.emit(`${roomCode}:typing`, socket.username + ' está digitando...')
-        })
+    socket.on(`${roomCode}:typing`, () => {
+      socket.broadcast.emit(`${roomCode}:typing`, socket.username + ' está digitando...')
     })
+  })
 })
 
 
 const PORT = process.env.PORT || 8000
 server.listen(PORT, () => {
-    console.log(`Server listening at http://localhost:${8000}`)
+  console.log(`Server listening at http://localhost:${8000}`)
 })

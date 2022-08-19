@@ -1,24 +1,24 @@
 #messages {
-    width: 325px;
-    height: 275px;
-    overflow-y: scroll;
+  width: 325px;
+  height: 275px;
+  overflow-y: scroll;
 }
 
 #messagesBox {
-    display: none;
+  display: none;
 }
 
 #messagesForm {
-    position: fixed;
-    width: 325px;
-    top: 305px;
+  position: fixed;
+  width: 325px;
+  top: 305px;
 }
 
 #manualForm, #directForm, hr {
-    width: 50%;
+  width: 50%;
 }
 
 .list-group-item {
-    color: #0d6efd;
-    cursor: pointer;
+  color: #0d6efd;
+  cursor: pointer;
 }
