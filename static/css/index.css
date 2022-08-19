@@ -14,7 +14,7 @@
     top: 305px;
 }
 
-#manualForm, #directForm {
+#manualForm, #directForm, hr {
     width: 50%;
 }
 
