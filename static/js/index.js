@@ -36,8 +36,7 @@ menu.onsubmit = () => {
 
   changeRoom(roomCode);
 
-  menu.style.display = 'none';
-  menuChooseBuildedRoom.style.display = 'none';
+  menuForms.style.display = 'none';
   messagesBox.style.display = 'block';
 
   return false;
@@ -63,8 +62,7 @@ roomOne.onclick = () => {
 
   changeRoom(roomCode);
 
-  menu.style.display = 'none';
-  menuChooseBuildedRoom.style.display = 'none';
+  menuForms.style.display = 'none';
   messagesBox.style.display = 'block';
 }
 
