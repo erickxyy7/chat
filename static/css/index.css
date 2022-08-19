@@ -1,6 +1,6 @@
 #messages {
   width: 325px;
-  height: 275px;
+  height: 420px;
   overflow-y: scroll;
 }
 
@@ -12,7 +12,7 @@
 #messagesForm {
   position: fixed;
   width: 325px;
-  top: 305px;
+  top: 450px;
 }
 
 #manualForm, #directForm, hr {
