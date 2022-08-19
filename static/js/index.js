@@ -5,12 +5,25 @@ function randomName() {
   return names[Math.floor(Math.random() * names.length)];
 }
 
+function messageHTML(msg) {
+  msg = `
+  <div class="message">
+    <div>
+      Você
+    </div>
+    <div>
+      ${msg}
+    </div>
+  </div>`;
+  return msg;
+}
+
 messagesForm.onsubmit = () => {
   if (document.getElementById('typing') != null)
     document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
   message = messagesForm.message.value;
   messagesForm.message.value = '';
-  messages.innerHTML += 'você: ' + message + '<br>';
+  messages.innerHTML += messageHTML(message);
   messages.scrollTo(0, messages.scrollHeight);
   socket.emit(roomCode, message);
   return false;
@@ -23,7 +36,7 @@ function changeRoom(roomCode) {
   socket.on(roomCode, (message) => {
     if (document.getElementById('typing') != null)
       document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
-    messages.innerHTML += message + '<br>';
+    messages.innerHTML += messageHTML(message);
     messages.scrollTo(0, messages.scrollHeight);
   });
 }

@@ -6,6 +6,7 @@
 
 #messagesBox {
   display: none;
+  margin-left: 1em;
 }
 
 #messagesForm {
@@ -21,4 +22,11 @@
 .list-group-item {
   color: #0d6efd;
   cursor: pointer;
+}
+
+.message {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 0.5em;
 }
