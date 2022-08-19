@@ -13,3 +13,9 @@
     width: 325px;
     top: 305px;
 }
+
+#manualForm {
+    width: 50%;
+    border: solid #dee2e6;
+    border-width: 1px 0 0;
+}

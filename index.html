@@ -9,13 +9,19 @@
         <link rel="stylesheet" href="static/css/index.css">
     </head>
     <body>
-        <form id="menu">
-            <label for="username">Nome de usuário:</label>
-            <input type="text" name="username" id="username">
-            <label for="roomCode">Código da sala:</label>
-            <input type="text" name="roomCode" id="roomCode">
-            <input type="submit" value="Entrar">
-        </form>
+        <div id="manualForm">
+            <form id="menu">
+                <div id="mb-3">
+                    <label class="form-label" for="username">Nome de usuário:</label>
+                    <input class="form-control" type="text" name="username" id="username">
+                </div>
+                <div id="mb-3">
+                    <label class="form-label" for="roomCode">Código da sala:</label>
+                    <input class="form-control" type="text" name="roomCode" id="roomCode">
+                </div>
+                <input class="btn btn-outline-primary" type="submit" value="Entrar">
+            </form>
+        </div>
         <div id="menuChooseBuildedRoom">
             <h2>Ou, escolha uma sala e entre com um nome aleatório:</h2>
             <ul>
