@@ -20,8 +20,13 @@ io.on('connection', (socket) => {
   
   socket.on('change room', (roomCode) => {
     socket.on(roomCode, (message) => {
-      message = socket.username + ': ' + message
-      socket.broadcast.emit(roomCode, message)
+      messageObj = {
+        sender: {
+          username: socket.username
+        },
+        message: message
+      }
+      socket.broadcast.emit(roomCode, messageObj)
     })
     
     socket.on(`${roomCode}:typing`, () => {

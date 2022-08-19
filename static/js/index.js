@@ -5,11 +5,15 @@ function randomName() {
   return names[Math.floor(Math.random() * names.length)];
 }
 
-function messageHTML(msg) {
+function messageHTML(messageObj) {
+  
+  let sender_username = messageObj.sender.username;
+  let msg = messageObj.message;
+  
   msg = `
   <div class="message">
     <div class="balloonName">
-      Você
+      ${sender_username}
     </div>
     <div>
       ${msg}
@@ -23,7 +27,13 @@ messagesForm.onsubmit = () => {
     document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
   message = messagesForm.message.value;
   messagesForm.message.value = '';
-  messages.innerHTML += messageHTML(message);
+  messageObj = {
+    sender: {
+      username: 'Você'
+    },
+    message: message
+  };
+  messages.innerHTML += messageHTML(messageObj);
   messages.scrollTo(0, messages.scrollHeight);
   socket.emit(roomCode, message);
   return false;
@@ -33,10 +43,10 @@ function changeRoom(roomCode) {
   socket.emit('change room', roomCode);
 
   /* Listening for messages of other users from the same room: */
-  socket.on(roomCode, (message) => {
+  socket.on(roomCode, (messageObj) => {
     if (document.getElementById('typing') != null)
       document.getElementById('userTyping').innerHTML = '<span style="color: white">...</span>';
-    messages.innerHTML += messageHTML(message);
+    messages.innerHTML += messageHTML(messageObj);
     messages.scrollTo(0, messages.scrollHeight);
   });
 }
