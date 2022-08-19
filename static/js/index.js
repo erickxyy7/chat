@@ -8,7 +8,7 @@ function randomName() {
 function messageHTML(msg) {
   msg = `
   <div class="message">
-    <div>
+    <div class="balloonName">
       Você
     </div>
     <div>
