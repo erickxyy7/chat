@@ -29,7 +29,7 @@ messagesForm.onsubmit = () => {
   messagesForm.message.value = '';
   messageObj = {
     sender: {
-      username: 'Você'
+      username: 'You'
     },
     message: message
   };
