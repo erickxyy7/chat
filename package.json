@@ -11,6 +11,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Erick Augusto <erickaugusto542@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "description": "A web chat written with sockets"
 }
