@@ -11,9 +11,9 @@ Um chat escrito em JavaScript (Node.js), Express e Socket.IO.
 * Design simples e limpo.
 
 ## Setup
-* clone this repository
-* enter inside the repository on the command line
-* type the commands:
+* clone este repositório.
+* acesse o repositório pelo terminal.
+* digite os comandos:
   * `npm install`
   * `node index.js`
-* go to the url http://localhost:8000
+* acesse a url http://localhost:8000
