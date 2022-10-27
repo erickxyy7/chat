@@ -8,7 +8,7 @@ A web chat written in JavaScript (Node.js), ExpressJS and Socket.IO.
 * "User" is typing... is launched when a user starts typing
 * public rooms
 * private rooms
-* simple and clean design :)
+* simple and clean design
 
 ## Setup
 * clone this repository
