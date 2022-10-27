@@ -4,11 +4,11 @@ Um chat escrito em JavaScript (Node.js), Express e Socket.IO.
 ## Screenshots
 ![Chat screenshot](screenshots/screenshot-01.png)
 
-## Features
-* "User" is typing... is launched when a user starts typing
-* public rooms
-* private rooms
-* simple and clean design
+## Características
+* "'Usuário' está digitando...".
+* Salas públicas.
+* Salas privadas.
+* Design simples e limpo.
 
 ## Setup
 * clone this repository
