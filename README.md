@@ -1,5 +1,5 @@
 # chat
-A web chat written in JavaScript (Node.js), ExpressJS and Socket.IO.
+Um chat escrito em JavaScript (Node.js), Express e Socket.IO.
 
 ## Screenshots
 ![Chat screenshot](screenshots/screenshot-01.png)
